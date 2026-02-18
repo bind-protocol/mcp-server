@@ -3,7 +3,7 @@ import { createServer } from './server.js';
 import { logger } from './utils/logger.js';
 
 async function main(): Promise<void> {
-  const server = createServer();
+  const server = await createServer();
   const transport = new StdioServerTransport();
 
   logger.info('Bind Protocol MCP server starting');

@@ -10,6 +10,7 @@ export default defineConfig({
   sourcemap: true,
   splitting: false,
   treeshake: true,
+  external: ['better-sqlite3'],
   banner: {
     js: '#!/usr/bin/env node',
   },

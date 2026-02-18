@@ -1,0 +1,16 @@
+export { registerResolveIssuerTool } from './resolveIssuer.js';
+export { registerExplainPolicyTool } from './explainPolicy.js';
+export { registerCheckRevocationTool } from './checkRevocation.js';
+export { registerListPoliciesTool } from './listPolicies.js';
+export { registerListCircuitsTool } from './listCircuits.js';
+export { registerSubmitProveJobTool } from './submitProveJob.js';
+export { registerGetProveJobTool } from './getProveJob.js';
+export { registerListProveJobsTool } from './listProveJobs.js';
+export { registerIssueCredentialTool } from './issueCredential.js';
+export { registerShareProofTool } from './shareProof.js';
+export { registerListSharedProofsTool } from './listSharedProofs.js';
+export { registerWhoamiTool } from './whoami.js';
+export { registerCreatePolicyTool } from './createPolicy.js';
+export { registerValidatePolicyTool } from './validatePolicy.js';
+export { registerGenerateCircuitTool } from './generateCircuit.js';
+export { registerGetCircuitStatusTool } from './getCircuitStatus.js';

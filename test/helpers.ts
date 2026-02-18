@@ -1,4 +1,6 @@
 import crypto from 'node:crypto';
+import { vi } from 'vitest';
+import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { base64UrlEncode } from '../src/utils/jwt.js';
 
 /** Convert DER signature to raw 64-byte r||s format. */
@@ -62,4 +64,30 @@ export function signTestJWT(
   const sigB64 = base64UrlEncode(rawSig);
 
   return `${signingInput}.${sigB64}`;
+}
+
+/**
+ * Captures the tool handler registered via `server.tool()`.
+ * Returns the handler function so tests can call it directly
+ * without depending on McpServer internals.
+ */
+export function captureToolHandler<TArgs>(
+  register: (server: McpServer) => void,
+): (args: TArgs) => Promise<{ content: { type: string; text: string }[]; isError?: boolean }> {
+  const server = new McpServer({ name: 'test', version: '0.0.1' });
+  let handler: ((args: TArgs) => Promise<unknown>) | undefined;
+
+  vi.spyOn(server, 'tool').mockImplementation(
+    (_name: unknown, _desc: unknown, _schema: unknown, fn: unknown) => {
+      handler = fn as typeof handler;
+    },
+  );
+
+  register(server);
+
+  if (!handler) {
+    throw new Error('Tool handler was not captured — register function did not call server.tool()');
+  }
+
+  return handler as ReturnType<typeof captureToolHandler<TArgs>>;
 }

@@ -1,8 +1,9 @@
 {
   "name": "@bind-protocol/mcp-server",
-  "version": "0.1.0",
-  "description": "Local MCP server for Bind Protocol — credential parsing, verification, and hashing tools for AI agents",
+  "version": "0.2.0",
+  "description": "Unified MCP server for Bind Protocol — credential tools, API gateway, and action receipts for AI agents",
   "license": "MIT",
+  "author": "jason-c-child",
   "type": "module",
   "bin": {
     "bind-mcp-server": "./dist/index.js"
@@ -24,10 +25,13 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.12.1",
+    "better-sqlite3": "^11.0.0",
     "pino": "^9.6.0",
+    "ulid": "^2.3.0",
     "zod": "^3.24.0"
   },
   "devDependencies": {
+    "@types/better-sqlite3": "^7.6.0",
     "@types/node": "^20.0.0",
     "tsup": "^8.0.0",
     "typescript": "^5.3.0",
